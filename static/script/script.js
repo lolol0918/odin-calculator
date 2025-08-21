@@ -4,6 +4,7 @@ const display = document.getElementById("display");
 const clearBtn = document.getElementById("clear");
 const deleteButton = document.getElementById("backspace");
 const equalButton = document.getElementById("equals");
+const decimalButton = document.getElementById("decimal");
 
 let firstOperand = null;
 let secondOperand = null;
@@ -11,7 +12,7 @@ let currentOperator = null;
 
 const clear = () => {
     display.value = 0;
-}
+};
 
 const backspace = () => {
     if (display.value.length > 1) {
@@ -19,10 +20,10 @@ const backspace = () => {
     } else {
         clear();
     }
-}
+};
 
 const calculate = (firstOperand, secondOperand, operator) => {
-    switch(operator){
+    switch (operator) {
         case "+":
             return firstOperand + secondOperand;
         case "-":
@@ -34,7 +35,13 @@ const calculate = (firstOperand, secondOperand, operator) => {
         default:
             return secondOperand;
     }
-}
+};
+
+decimalButton.addEventListener("click", () => {
+    if(!display.value.includes(".")) {
+        display.value += decimalButton.dataset.value;
+    } 
+});
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -55,7 +62,7 @@ numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", () => {
         const value = numberButton.dataset.value;
 
-        if (display.value == 0) {
+        if (display.value == "0") {
             display.value = value;
         } else {
             display.value += value;
