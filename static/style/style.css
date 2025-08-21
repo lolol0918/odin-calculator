@@ -73,6 +73,7 @@ body {
 
 .clear {
   background-color: #ff3b30;
+  flex: 2;
   color: white;
 }
 
