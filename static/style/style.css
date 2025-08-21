@@ -9,79 +9,94 @@ body {
     height: 100vh;
     align-items: center;
     justify-content: center;
+    background-color: #1c1c1c; /* Darker background for contrast */
+    font-family: 'Arial', sans-serif; /* Consistent font */
 }
 
 .display {
     width: 100%;
     height: 60px;
     background-color: #222;
-    color: white;
+    color: #ffffff; /* White text for better readability */
     font-size: 2rem;
     text-align: right;
     padding-right: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
+
 .calculator {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
     justify-content: center;
     width: 350px;
+    border-radius: 10px; /* Rounded corners for the calculator */
+    background-color: #333; /* Background color for the calculator */
+    padding: 20px; /* Padding around the calculator */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
 }
 
 .button-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
     gap: 10px;
-    margin-bottom: 10px;
     width: 100%;
 }
 
-
 .btn {
-    flex: 1;
-    padding: 20px;
+    aspect-ratio: 3 / 2;  /* keeps them perfect rectangles */
     font-size: 1.2rem;
     border: none;
     border-radius: 8px;
     background-color: #444;
     color: white;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.1s; /* Added transform for button press effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for buttons */
+}
 
+.button-row:last-child {
+    grid-template-columns: 2fr 1fr 1fr; /* zero = 2/3, . and = = 1/6 each */
+    gap: 10px;
 }
 
 .btn:hover {
-  background-color: #666;
+    background-color: #666;
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
+
+
 .btn:active {
-  background-color: #888;
+    background-color: #888;
+    transform: translateY(1px); /* Press effect on active */
 }
 
 .operator {
-  background-color: #ff9500;
-  color: white;
+    background-color: #ff9500;
+    color: white;
 }
 
 .equals {
-  background-color: #34c759;
-  color: white;
+    background-color: #34c759;
+    color: white;
 }
 
 .clear {
-  background-color: #ff3b30;
-  flex: 2;
-  color: white;
+    background-color: #ff3b30;
+    flex: 2;
+    color: white;
 }
 
 .backspace {
-  background-color: #999;
-  color: white;
+    background-color: #999;
+    color: white;
 }
 
-.zero {
-  flex: 2; /* makes 0 button wider in flexbox */
+.plus-minus {
+    background-color: #ff9500;
+    color: white;
 }

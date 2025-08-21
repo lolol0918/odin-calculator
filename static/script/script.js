@@ -1,10 +1,12 @@
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
 const display = document.getElementById("display");
-const clearBtn = document.getElementById("clear");
+const clearBtn = document.getElementById("clear-entry");
+const clearAllBtn = document.getElementById("clear-all");
 const deleteButton = document.getElementById("backspace");
 const equalButton = document.getElementById("equals");
 const decimalButton = document.getElementById("decimal");
+const plusMinusButton = document.getElementById("plus-minus");
 
 let firstOperand = null;
 let secondOperand = null;
@@ -12,6 +14,13 @@ let currentOperator = null;
 
 const clear = () => {
     display.value = 0;
+};
+
+const clearAll = () => {
+    clear();  // inherit/reuse the clear() logic
+    firstOperand = null;
+    secondOperand = null;
+    currentOperator = null;
 };
 
 const backspace = () => {
@@ -37,10 +46,14 @@ const calculate = (firstOperand, secondOperand, operator) => {
     }
 };
 
+plusMinusButton.addEventListener("click", () => {
+    display.value = parseFloat(display.value) * -1;
+});
+
 decimalButton.addEventListener("click", () => {
-    if(!display.value.includes(".")) {
+    if (!display.value.includes(".")) {
         display.value += decimalButton.dataset.value;
-    } 
+    }
 });
 
 operatorButtons.forEach(button => {
@@ -73,3 +86,4 @@ numberButtons.forEach(numberButton => {
 
 deleteButton.addEventListener("click", backspace);
 clearBtn.addEventListener("click", clear);
+clearAllBtn.addEventListener("click", clearAll);
