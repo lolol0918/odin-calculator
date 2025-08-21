@@ -1,11 +1,22 @@
 const numberButtons = document.querySelectorAll(".number");
 const display = document.getElementById("display");
+const clearBtn = document.getElementById("clear");
+const deleteButton = document.getElementById("backspace");
 
 const clear = () => {
     display.value = 0;
 }
 
-const clearBtn = document.getElementById("clear");
+const backspace = () => {
+    if (display.value.length > 1) {
+        display.value = display.value.slice(0, -1);
+    } else {
+        clear();
+    }  
+} 
+
+
+deleteButton.addEventListener("click", backspace);
 
 clearBtn.addEventListener("click", clear);
 
