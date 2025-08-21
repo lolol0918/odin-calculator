@@ -84,6 +84,37 @@ numberButtons.forEach(numberButton => {
     });
 });
 
+window.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    // Numbers and decimal
+    if (!isNaN(key) || key === ".") {
+        document.querySelector(`.btn[data-value="${key}"]`)?.click();
+    }
+
+    // Operators
+    if (["+", "-", "*", "/"].includes(key)) {
+        document.querySelector(`.btn[data-value="${key}"]`)?.click();
+    }
+
+    // Enter or =
+    if (key === "Enter" || key === "=") {
+        document.querySelector(`#equals`)?.click();
+        event.preventDefault(); // stops Enter from submitting forms
+    }
+
+    // Backspace
+    if (key === "Backspace") {
+        document.querySelector(`#backspace`)?.click();
+        event.preventDefault();
+    }
+
+    // Clear with "c" or "C"
+    if (key.toLowerCase() === "c") {
+        document.querySelector(`#clear-entry`)?.click();
+    }
+});
+
 deleteButton.addEventListener("click", backspace);
 clearBtn.addEventListener("click", clear);
 clearAllBtn.addEventListener("click", clearAll);
