@@ -7,7 +7,7 @@ const clear = () => {
 
 const clearBtn = document.getElementById("clear");
 
-clearBtn.addEventListener("click", clear());
+clearBtn.addEventListener("click", clear);
 
 
 numberButtons.forEach(numberButton => {
