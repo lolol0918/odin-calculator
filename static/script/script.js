@@ -1,7 +1,13 @@
 const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
 const display = document.getElementById("display");
 const clearBtn = document.getElementById("clear");
 const deleteButton = document.getElementById("backspace");
+const equalButton = document.getElementById("equals");
+
+let firstOperand = null;
+let secondOperand = null;
+let currentOperator = null;
 
 const clear = () => {
     display.value = 0;
@@ -12,32 +18,51 @@ const backspace = () => {
         display.value = display.value.slice(0, -1);
     } else {
         clear();
-    }  
-} 
+    }
+}
 
+const calculate = (firstOperand, secondOperand, operator) => {
+    switch(operator){
+        case "+":
+            return firstOperand + secondOperand;
+        case "-":
+            return firstOperand - secondOperand;
+        case "*":
+            return firstOperand * secondOperand;
+        case "/":
+            return firstOperand / secondOperand;
+        default:
+            return secondOperand;
+    }
+}
 
-deleteButton.addEventListener("click", backspace);
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        firstOperand = display.value;
+        currentOperator = button.dataset.value
+        clear();
+    });
+});
 
-clearBtn.addEventListener("click", clear);
-
+equalButton.addEventListener("click", () => {
+    firstOperand = parseFloat(firstOperand);
+    secondOperand = parseFloat(display.value);
+    display.value = calculate(firstOperand, secondOperand, currentOperator);
+    firstOperand = parseFloat(display.value);
+});
 
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", () => {
         const value = numberButton.dataset.value;
-
-        // IF input is NaN
-            // IF it is an operator
-                // store
-            // ELSE IF it is delete
-                // Delete the end of the value
-            // ELSE IF clear
-                // clear the value
 
         if (display.value == 0) {
             display.value = value;
         } else {
             display.value += value;
         }
-        
+
     });
 });
+
+deleteButton.addEventListener("click", backspace);
+clearBtn.addEventListener("click", clear);
